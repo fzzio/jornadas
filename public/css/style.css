@@ -1,0 +1,435 @@
+html, body{
+	font-family: 'Droid Sans', sans-serif;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.wrapper-jornada{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: center top;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+.w-inicio{
+	background-image: url('../img/fondos/bg-1.jpg');
+}
+.w-bienvenido{
+	background-image: url('../img/fondos/bg-2.jpg');
+}
+
+.w-nivel1{
+	background-image: url('../img/fondos/bg-8.png');
+	min-height: 100%;
+	height: auto;
+}
+
+.alto-completo{
+	position: relative;
+	height: 100%;
+}
+
+.obj-centrar{
+	position: relative;
+	margin: 0 auto;
+	text-align: center;
+}
+.obj-izq{
+	margin-left: 0;
+	margin-right: auto;
+}
+.obj-der{
+	margin-left: auto;
+	margin-right: 0;
+}
+
+.link-jornadas{
+	outline: none;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.espaciado-a{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.row-sinborde{
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.v-center-contenedor {
+	display: table;
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+.v-center-contenido{
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.v-bottom-contenido{
+	display: table-cell;
+	vertical-align: bottom;
+}
+.v-center-contenido-h{
+	text-align: center;
+}
+
+.mayusculas{
+	text-transform: uppercase;
+}
+
+.frm-error{
+	display: inline;
+	margin-right: 10px;
+	margin-left: 0px;
+	background-color: #EFC02D;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+/* ////////////////////////////////////////////// */
+/* Credit to bootsnipp.com for the css for the color graph */
+.colorgraph {
+  height: 5px;
+  border-top: 0;
+  background: #c4e17f;
+  border-radius: 5px;
+  background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+.fondo-panel-j{
+	background: rgba(241,231,103,1);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(241,231,103,1) 0%, rgba(237,165,52,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(241,231,103,1)), color-stop(100%, rgba(237,165,52,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(241,231,103,1) 0%, rgba(237,165,52,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(241,231,103,1) 0%, rgba(237,165,52,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(241,231,103,1) 0%, rgba(237,165,52,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(241,231,103,1) 0%, rgba(237,165,52,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#eda534', GradientType=1 );
+
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+
+	padding: 20px;
+	border-radius: 10px;
+}
+
+.fondo-panel-j2{
+	background: rgba(164,179,87,1);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(164,179,87,1) 0%, rgba(117,137,12,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(164,179,87,1)), color-stop(100%, rgba(117,137,12,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(164,179,87,1) 0%, rgba(117,137,12,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(164,179,87,1) 0%, rgba(117,137,12,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(164,179,87,1) 0%, rgba(117,137,12,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(164,179,87,1) 0%, rgba(117,137,12,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a4b357', endColorstr='#75890c', GradientType=1 );
+
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	
+	padding: 20px;
+	border-radius: 10px;
+}
+
+
+
+/* ////////////////////////////////////////////// */
+
+.fondo-lista{
+	position: relative;
+	background-image: url('../img/panel.png');
+	background-repeat: no-repeat;
+	background-position: center top;
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+	background-size: 100% 100%;
+	padding-top: 15px;
+}
+.fondo-pregunta{
+	position: relative;
+	background-image: url('../img/panel-pregunta.png');
+	background-repeat: no-repeat;
+	background-position: center top;
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+	background-size: 100% 100%;
+	padding-top: 15px;
+}
+.img-titular-principal{
+	width: 100%;
+	position: relative;
+}
+
+.img-titular{
+	width: 100%;
+	position: relative;
+    /*margin-top: -40px;*/
+}
+
+.no-pregunta, .no-pregunta:hover, .no-pregunta:focus, .no-pregunta:active{
+	text-decoration: none;
+	outline: none;
+}
+
+.no-pregunta{
+	background-image: url('../img/no-pregunta.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: contain;
+	-moz-background-size: contain;
+	-o-background-size: contain;
+	background-size: contain;
+	display: block;
+	padding: 5px;
+	opacity: 0.8;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+
+.no-pregunta:hover, .no-pregunta:focus, .no-pregunta:active{
+	opacity: 1;
+}
+
+.img-no-pregunta{
+	width: 100%;
+}
+.txt-no-pregunta{
+	font-family: 'Droid Sans', sans-serif;
+	color: #FFFFFF;
+	font-weight: 700;
+	text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 1px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000;
+}
+.no-pregunta:hover .txt-no-pregunta{
+	text-decoration: none;
+}
+
+.no-pregunta-bloq{
+	background-image: url('../img/no-pregunta-bloq.png');
+	cursor: pointer;
+}
+
+.no-pregunta.desactivado{
+	cursor: not-allowed;
+}
+
+.no-pregunta-bloq:hover, .no-pregunta-bloq:focus, .no-pregunta-bloq:active{
+	opacity: 0.8;
+}
+
+.navbar-jornadas {
+	background-color: #DCD6D3;
+	border-bottom: 2px solid #B54A4A;
+	margin-bottom: 0px;
+}
+
+.titular-principal{
+	font-family: 'Droid Sans', sans-serif;
+	color: #FFFFFF;
+	font-weight: 700;
+	text-shadow: 2px 0 0 #de8010, -2px 0 0 #de8010, 0 2px 0 #de8010, 0 -2px 0 #de8010, 1px 1px #de8010, -1px -1px 0 #de8010, 1px -1px 0 #de8010, -1px 1px 0 #de8010;
+	text-transform: uppercase;
+
+	background: rgba(241,231,103,1);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(241,231,103,1) 0%, rgba(237,165,52,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(241,231,103,1)), color-stop(100%, rgba(237,165,52,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(241,231,103,1) 0%, rgba(237,165,52,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(241,231,103,1) 0%, rgba(237,165,52,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(241,231,103,1) 0%, rgba(237,165,52,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(241,231,103,1) 0%, rgba(237,165,52,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#eda534', GradientType=1 );
+
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+
+	padding: 20px;
+	border-radius: 10px;
+}
+.titular-encuesta{
+	font-family: 'Droid Sans', sans-serif;
+	color: #FFFFFF;
+	font-weight: 700;
+	text-shadow: 2px 0 0 #de8010, -2px 0 0 #de8010, 0 2px 0 #de8010, 0 -2px 0 #de8010, 1px 1px #de8010, -1px -1px 0 #de8010, 1px -1px 0 #de8010, -1px 1px 0 #de8010;
+	text-transform: uppercase;
+}
+.titular-encuesta-pregunta{
+	font-family: 'Droid Sans', sans-serif;
+	color: #FFFFFF;
+	font-weight: 700;
+	text-shadow: 2px 0 0 #925a10, -2px 0 0 #925a10, 0 2px 0 #925a10, 0 -2px 0 #925a10, 1px 1px #925a10, -1px -1px 0 #925a10, 1px -1px 0 #925a10, -1px 1px 0 #925a10;
+	text-transform: uppercase;
+}
+.titular-encuesta-pregunta-r{
+	font-family: 'Droid Sans', sans-serif;
+	color: #FFFFFF;
+	font-weight: 400;
+	text-shadow: 2px 0 0 #925a10, -2px 0 0 #925a10, 0 2px 0 #925a10, 0 -2px 0 #925a10, 1px 1px #925a10, -1px -1px 0 #925a10, 1px -1px 0 #925a10, -1px 1px 0 #925a10;
+}
+
+.txt-contenido{
+	font-family: 'Droid Sans', sans-serif;
+	color: #000000;
+	font-weight: 400;
+	font-size: 15px;
+}
+.txt-terminos{
+	font-family: 'Droid Sans', sans-serif;
+	color: #000000;
+	font-weight: 400;
+	font-size: 15px;	
+}
+.txt-contenido-resaltado{
+	font-weight: 700;
+}
+.txt-contenido-error{
+	font-family: 'Droid Sans', sans-serif;
+	color: #000000;
+	font-weight: 400;
+}
+
+.btn-comenzar{
+	background-color: #a6e24e;
+	font-family: 'Droid Sans', sans-serif;
+	color: #FFFFFF;
+	font-weight: 700;
+	text-shadow: 2px 0 0 #3f9043, -2px 0 0 #3f9043, 0 2px 0 #3f9043, 0 -2px 0 #3f9043, 1px 1px #3f9043, -1px -1px 0 #3f9043, 1px -1px 0 #3f9043, -1px 1px 0 #3f9043;
+	opacity: 0.8;
+	border: 2px solid #3f9043;
+	border-radius: 15px;
+}
+.btn-comenzar:hover, .btn-comenzar:focus, .btn-comenzar:active{
+	opacity: 1;
+	color: red;
+}
+
+.btn-anterior{
+	background-color: #bebebe;
+	font-family: 'Droid Sans', sans-serif;
+	color: #FFFFFF;
+	font-weight: 700;
+	text-shadow: 2px 0 0 #6a6a6a, -2px 0 0 #6a6a6a, 0 2px 0 #6a6a6a, 0 -2px 0 #6a6a6a, 1px 1px #6a6a6a, -1px -1px 0 #6a6a6a, 1px -1px 0 #6a6a6a, -1px 1px 0 #6a6a6a;
+	opacity: 0.8;
+	border: 2px solid #6a6a6a;
+	border-radius: 15px;
+}
+.btn-anterior:hover, .btn-anterior:focus, .btn-anterior:active{
+	opacity: 1;
+	color: #FFFFFF;
+}
+
+.btn-siguiente{
+	background-color: #febc28;
+	font-family: 'Droid Sans', sans-serif;
+	color: #FFFFFF;
+	font-weight: 700;
+	text-shadow: 2px 0 0 #e18901, -2px 0 0 #e18901, 0 2px 0 #e18901, 0 -2px 0 #e18901, 1px 1px #e18901, -1px -1px 0 #e18901, 1px -1px 0 #e18901, -1px 1px 0 #e18901;
+	opacity: 0.8;
+	border: 2px solid #e18901;
+	border-radius: 15px;
+}
+.btn-siguiente:hover, .btn-siguiente:focus, .btn-siguiente:active{
+	opacity: 1;
+	color: #FFFFFF;
+}
+
+.btn-okay{
+	background-color: #7b91d6;
+	font-family: 'Droid Sans', sans-serif;
+	color: #FFFFFF;
+	font-weight: 700;
+	text-shadow: 2px 0 0 #354797, -2px 0 0 #354797, 0 2px 0 #354797, 0 -2px 0 #354797, 1px 1px #354797, -1px -1px 0 #354797, 1px -1px 0 #354797, -1px 1px 0 #354797;
+	opacity: 0.8;
+	border: 2px solid #354797;
+	border-radius: 15px;
+}
+.btn-okay:hover, .btn-okay:focus, .btn-okay:active{
+	opacity: 1;
+	color: #FFFFFF;
+}
+
+
+.txt-jornada-input:focus{
+	border-color: #e18901;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(225, 137, 1, .6);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(225, 137, 1, .6);
+}
+
+.modal-contenedor{
+	background-color: transparent;
+    border: medium none;
+    border-radius: 0px;
+    box-shadow: none;
+}
+
+.checkbox-jornada label{
+	padding-left: 30px;
+}
+.checkbox-jornada input[type="checkbox"]{
+	margin-left: -30px;
+}
+
+.op-correcto{
+	color: #006C48;
+}
+.op-incorrecto{
+	color: #FF0035;
+}
+.op-ninguno{
+	color: #666666;
+}
+
+/*Media Querys*/
+/* Large desktop */
+@media (min-width: 1921px) {
+
+}
+
+@media (min-width: 1200px) {
+
+}
+ 
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+	html, body{
+		position: relative;
+		height: auto;
+	}
+	.img-titular{
+		max-width: 370px;
+	}
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+	html, body{
+		position: relative;
+		height: auto;
+	}
+}
