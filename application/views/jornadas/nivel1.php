@@ -56,7 +56,7 @@
                                                         </p>
                                                     </div>
                                                     <div class="col-md-12 espaciado-a">
-                                                        <div class="btn btn-lg btn-comenzar" onclick="irSiguiente(this);">Comenzar</div>
+                                                        <div class="btn btn-lg btn-comenzar" onclick="comenzarPreguntas(this);">Comenzar</div>
                                                         <br /><br />
                                                     </div>
                                                 </div>
@@ -77,6 +77,29 @@
                                                     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                                                         <img src="<?php echo base_url('public/img/titular-selecciona.png'); ?>" alt="" class="img-responsive obj-centrar img-titular" />
                                                     </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3 text-center">
+                                                        <h3>Vidas: </h3>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="container-fluid">
+                                                            <div class="row" id="div-vidas">
+                                                                <?php for ($i=0; $i <( $participante->vidasxjuego - $participante->vidasperdidas ) ; $i++) { ?>
+                                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                                                    <img src="<?php echo base_url('public/img/life_icon.png'); ?>" alt="" class="img-responsive obj-centrar" />
+                                                                </div>
+                                                                <?php } ?>
+                                                                <?php for ($i=0; $i <( $participante->vidasperdidas ) ; $i++) { ?>
+                                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center">
+                                                                    <img src="<?php echo base_url('public/img/life_icon-die.png'); ?>" alt="" class="img-responsive obj-centrar" />
+                                                                </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
                                                 </div>
                                                 <div class="row">
                                                     <?php $numP = 1; ?>
@@ -124,9 +147,7 @@
                                                     <div class="row">
                                                         <div class="col-md-8 col-md-offset-2">
                                                             <h1 class="titular-encuesta-pregunta">
-                                                                <!-- --- # <?php //echo $pregunta['id']; ?> --- -->
                                                                 --- # <?php echo $numP; $numP = $numP + 1; ?> ---
-                                                                
                                                             </h1>
                                                             <h4 class="titular-encuesta-pregunta">
                                                                 <?php echo utf8_encode($pregunta['texto']); ?>
@@ -167,7 +188,8 @@
 
                                                     <div class="row espaciado-a">
                                                         <div class="col-md-12 espaciado-a">
-                                                            <div class="btn btn-lg btn-okay" onclick="irASlideID('no-preguntas');">Aceptar</div>
+                                                            <!-- <div class="btn btn-lg btn-okay" onclick="irASlideID('no-preguntas');">Aceptar</div> -->
+                                                            <div class="btn btn-lg btn-okay" onclick="verificarRespuestas1('<?php echo $pregunta["id"]; ?>', 'no-preguntas');">Aceptar</div>
                                                             <br /><br />
                                                         </div>
                                                     </div>

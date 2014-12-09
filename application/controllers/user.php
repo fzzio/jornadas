@@ -27,6 +27,7 @@
 			$data['title']= 'Bienvenido Todos';
 			$data['user_nombre']= $this->session->userdata('user_nombre');
 
+
 			$data['juegos'] = $this->db->get_where('pregunta', array('estado' => 1));
 	        $data['preguntas'] = $this->db->get_where('pregunta', array('estado' => 1));
 	        $data['respustasOpciones'] = $this->db->get_where('pregunta_opcion', array('estado' => 1));
@@ -87,6 +88,8 @@
 				'user_fechanacimiento' => '',
 				'user_puntajemaximo' => '',
 				'user_puntajeminimo' => '',
+				'user_vidasxjuego' => '',
+				'user_vidasxjuego' => '',
 				'user_estado' => '',
 				'logged_in' => FALSE,
 			);
@@ -137,7 +140,13 @@
 
 	        if(($this->session->userdata('user_cedula')!="")){
 				
-	        	$data['user_nombre']= $this->session->userdata('user_nombre');
+	        	$data['user_nombre'] = $this->session->userdata('user_nombre');
+
+
+	        	$data['user_vidasxjuego']= $this->session->userdata('user_vidasxjuego');
+            	$data['user_vidasperdidas']= $this->session->userdata('user_vidasperdidas');
+
+	        	$data['participante'] = $this->db->get_where('participante', array('estado' => 1, 'id' => $this->session->userdata('user_id')))->row();
 
 				$arrJuegos = $this->db->get_where('juego', array('estado' => 1))->result_array() ;
 				$data['juegoNivel1'] = $arrJuegos[0];
@@ -201,6 +210,7 @@
             }
             $data['resultados'] = $listaRespuestas;
             $data['user_nombre']= $this->session->userdata('user_nombre');
+
 			//$this->respuesta_model->add_respuestas();
 
 
@@ -222,8 +232,55 @@
 
 		}
 
+		public function reducirVidas(){
+			$participante = $this->db->get_where('participante', array('estado' => 1, 'id' => $this->session->userdata('user_id')))->row();
+			
+			$resultado = array();
+			if(($participante->vidasperdidas + 1) <=  $participante->vidasxjuego){
+				$participante->vidasperdidas = $participante->vidasperdidas + 1;
+				$data = array(
+					'vidasperdidas' => $participante->vidasperdidas,
+					'vidasxjuego' => $participante->vidasxjuego
+	            );
+	            $this->db->update('participante', $data, array('id' => $this->session->userdata('user_id')));
+				$resultado = array(
+	            	'codigo' => 1,
+	                'Mensaje' => "Se han quitado vidas",
+	                'vidasperdidas' => ($participante->vidasperdidas) * 1,
+	                'vidasxjuego' => ($participante->vidasxjuego) * 1
+	            );
+			}else{
+				$participante->vidasperdidas = $participante->vidasperdidas ;
+				$resultado = array(
+	            	'codigo' => 2,
+	                'Mensaje' => "No se han quitado vidas",
+	                'vidasperdidas' => ($participante->vidasperdidas) * 1,
+	                'vidasxjuego' => ($participante->vidasxjuego) * 1
+	            );
+			}
+
+            header('Content-Type: application/json');
+        	echo json_encode( $resultado );
+		}
+
+		public function resetearVidas(){
+			$participante = $this->db->get_where('participante', array('estado' => 1, 'id' => $this->session->userdata('user_id')))->row();
+			$data = array(
+				'vidasxjuego' => $participante->vidasxjuego,
+				'vidasperdidas' => 0
+            );
+            $this->db->update('participante', $data, array('id' => $this->session->userdata('user_id')));
+			
+			$resultado = array(
+            	'codigo' => 1,
+                'Mensaje' => "Se han reseteado vidas",
+                'vidasperdidas' => ($participante->vidasperdidas) * 1,
+                'vidasxjuego' => ($participante->vidasxjuego) * 1
+            );
 		
 
-	    
+            header('Content-Type: application/json');
+        	echo json_encode( $resultado );
+		}
 	}
 ?>

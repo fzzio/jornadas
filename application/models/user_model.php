@@ -25,6 +25,8 @@
                             'user_fechanacimiento' => $rows->fechanacimiento,
                             'user_puntajemaximo'   => $rows->puntajemaximo,
                             'user_puntajeminimo'   => $rows->puntajeminimo,
+                            'user_vidasxjuego'     => $rows->vidasxjuego,
+                            'user_vidasperdidas'   => $rows->vidasperdidas,
                             'user_estado'          => $rows->estado,
     	                    'logged_in'            => TRUE,
                        );

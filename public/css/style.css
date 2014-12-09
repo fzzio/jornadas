@@ -223,6 +223,14 @@ html, body{
 .no-pregunta:hover .txt-no-pregunta{
 	text-decoration: none;
 }
+.txt-no-pregunta.error{
+	/*text-shadow: 3px 0 0 #FF0000, -3px 0 0 #FF0000, 0 3px 0 #FF0000, 0 -3px 0 #FF0000, 2px 2px #FF0000, -2px -2px 0 #FF0000, 2px -2px 0 #FF0000, -2px 2px 0 #FF0000;*/
+	color: #FF0000;
+}
+.txt-no-pregunta.okay{
+	/*text-shadow: 3px 0 0 #00FF00, -3px 0 0 #00FF00, 0 3px 0 #00FF00, 0 -3px 0 #00FF00, 2px 2px #00FF00, -2px -2px 0 #00FF00, 2px -2px 0 #00FF00, -2px 2px 0 #00FF00;*/
+	color: #00FF00;
+}
 
 .no-pregunta-bloq{
 	background-image: url('../img/no-pregunta-bloq.png');
