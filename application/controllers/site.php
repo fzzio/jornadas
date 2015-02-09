@@ -146,4 +146,34 @@ class Site extends CI_Controller {
         echo json_encode( $resultado );
     }
 
+
+    public function obtenerPreguntaRespuesta(){
+        $debug = false;
+        $data['debug'] = $debug;
+        $resultado = array();
+
+        
+        if(($this->input->post()!="")){
+            $idPregunta = $this->input->post('idPregunta');
+
+            $pregunta = $this->db->get_where('pregunta', array('id' => $idPregunta ) )->row();
+            $respuestasPregunta = $this->db->get_where('pregunta_opcion', array('estado' => 1, 'idpregunta'=>$idPregunta))->result_array() ;
+            
+            $resultado = array(
+                'codigo' => 1,
+                'Mensaje' => "correcto",
+                'dataPregunta' => $pregunta,
+                'dataRespuestas' => $respuestasPregunta
+            );
+            
+        }else{
+            $resultado = array(
+                'codigo' => 3,
+                'Mensaje' => "no se recibio datos");
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode( $resultado );
+    }
+
 }

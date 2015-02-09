@@ -17,20 +17,21 @@
 						<h1 class="titular-encuesta">
 							Resultados
 						</h1>
-						<p class="txt-contenido">
-							Puntaje alcanzado
-						</p>
 					</div>
 				</div>
-
-
 				<div class="row espaciado-a">
 					<div class="col-md-12">
-						<div class="container-fluid">
-							
-						</div>
+						<h3 class="titular-encuesta-pregunta">
+							-- <?php echo $puntosObtenidos; ?> puntos, de <?php echo $puntosTotales; ?> posibles --
+						</h3>
 					</div>
 				</div>
+
+				<?php 
+
+				//echo "respuestas correctas" . count($resultados);
+
+				/*
 
 				<?php foreach ($preguntas as $pregunta): ?>
 						<div class="row text-left">
@@ -61,10 +62,11 @@
 							</div>
 						</div>
 					<?php endforeach ?>
+				*/ ?>
 
 				<div class="row espaciado-a">
 					<div class="col-md-12 espaciado-a">
-						<?php echo anchor('user/juegoUno', 'Volver', array('class' => 'btn btn-lg btn-comenzar')); ?>
+						<?php echo anchor('user/juegoDos/' . $materia->id, 'Continuar', array('class' => 'btn btn-lg btn-comenzar')); ?>
 						<br /><br />
 					</div>
 				</div>

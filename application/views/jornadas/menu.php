@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="<?php echo site_url('user/welcome');?>">
         Bienvenido
         <strong><?php echo $user_nombre; ?></strong>
       </a>

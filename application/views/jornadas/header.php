@@ -15,9 +15,26 @@
         
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/css/bootstrap.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/fonts/fuentes.css'); ?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/css/hover-min.css'); ?>">        
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/css/style.css'); ?>">
         <link rel="icon" type="image/png" href="<?php echo base_url('public/img/favicon.png'); ?>">
+
+
+        <script type="text/javascript">
+            var base_url = '<?php echo base_url(); ?>';
+
+            var js_site_url = function( urlText ){
+                var urlTmp = "<?php echo site_url('" + urlText + "'); ?>";
+                return urlTmp;
+            }
+
+            var js_base_url = function( urlText ){
+                var urlTmp = "<?php echo base_url('" + urlText + "'); ?>";
+                return urlTmp;
+            }
+        </script>
+        
     </head>
     <body>
         <?php /*

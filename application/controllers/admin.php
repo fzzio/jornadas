@@ -18,6 +18,7 @@ class Admin extends CI_Controller {
     ///http://getbootstrap.com/2.3.2/base-css.html#icons
     public function getMenu() {
         $menu = array();
+        array_push($menu, array("url" => "admin/materia", "label" => "Materia", "icon" => "icon-home"));
         array_push($menu, array("url" => "admin/juego", "label" => "Juego/Nivel", "icon" => "icon-home"));
         array_push($menu, array("url" => "admin/pregunta", "label" => "Preguntas", "icon" => "icon-home"));
         array_push($menu, array("url" => "admin/preguntaOpcion", "label" => "Preguntas: Opciones Respuesta", "icon" => "icon-home"));
@@ -131,12 +132,14 @@ class Admin extends CI_Controller {
         $crud->display_as('nombre','Nombre');
         $crud->display_as('descripcion','Descripción');
         $crud->display_as('estado','Estado');
+        $crud->display_as('idmateria','Materia');
 
-        $crud->columns('nombre', 'descripcion', 'estado');
-        $crud->fields('nombre', 'descripcion', 'estado');
-        $crud->required_fields('nombre', 'descripcion', 'estado');
+        $crud->columns('nombre', 'descripcion', 'estado', 'idmateria');
+        $crud->fields('nombre', 'descripcion', 'estado', 'idmateria');
+        $crud->required_fields('nombre', 'descripcion', 'estado', 'idmateria');
         
-        $crud->field_type('descripcion', 'text'); 
+        $crud->field_type('descripcion', 'string');
+        $crud->set_relation('idmateria', 'materia', 'nombre');
 
         $crud->field_type('estado', 'dropdown', array(
             '1' => 'Activo',
@@ -161,7 +164,7 @@ class Admin extends CI_Controller {
         $crud->fields('idjuego', 'tipo', 'texto', 'estado');
         $crud->required_fields('texto', 'tipo', 'idjuego', 'estado');
         
-        $crud->field_type('texto', 'text'); 
+        $crud->field_type('texto', 'string'); 
 
         $crud->set_relation('idjuego', 'juego', 'nombre');
 
@@ -192,7 +195,7 @@ class Admin extends CI_Controller {
         $crud->fields('idpregunta', 'texto', 'correcta', 'estado');
         $crud->required_fields('idpregunta', 'texto', 'correcta', 'estado');
         
-        $crud->field_type('texto', 'text'); 
+        $crud->field_type('texto', 'string'); 
 
         $crud->set_relation('idpregunta', 'pregunta', 'texto');
 
@@ -245,6 +248,28 @@ class Admin extends CI_Controller {
         $this->showPage($output);
     }
 
+
+    public function materia(){
+        $crud = new grocery_CRUD();
+        $crud->set_table("materia");
+        $crud->set_subject('Materia');
+        $crud->display_as('nombre','Nombre de la Asignatura');
+        $crud->display_as('estado','Estado');
+        $crud->display_as('fecha','Fecha de ingeso al sistema');
+
+
+        $crud->columns('nombre', 'estado', 'fecha');
+        $crud->fields('nombre', 'estado', 'fecha');
+        $crud->required_fields('nombre', 'estado', 'fecha');
+        
+        $crud->field_type('estado', 'dropdown', array(
+            '1' => 'Activo',
+            '0' => 'Inactivo'
+        ));
+        
+        $output = $crud->render();
+        $this->showPage($output);
+    }
 
     /*
     

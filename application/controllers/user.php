@@ -24,10 +24,11 @@
 		}
 
 		public function welcome(){
-			$data['title']= 'Bienvenido Todos';
-			$data['user_nombre']= $this->session->userdata('user_nombre');
+			$data['title']= 'Bienvenido/a ' . $this->session->userdata('user_nombre');
+			$data['user_nombre'] = $this->session->userdata('user_nombre');
 
 
+			$data['materias'] = $this->db->get_where('materia', array('estado' => 1))->result_array();
 			$data['juegos'] = $this->db->get_where('pregunta', array('estado' => 1));
 	        $data['preguntas'] = $this->db->get_where('pregunta', array('estado' => 1));
 	        $data['respustasOpciones'] = $this->db->get_where('pregunta_opcion', array('estado' => 1));
@@ -136,107 +137,23 @@
 	        return $participante;
 	    }
 
-	    public function juegoUno(){
+	    public function sumarPuntos($puntos){
+	    	// se suman los puntos
+            $participante = $this->db->get_where('participante', array('estado' => 1, 'id' => $this->session->userdata('user_id')))->row();
+			$participante->puntajemaximo = $participante->puntajemaximo + $puntos;
 
-	        if(($this->session->userdata('user_cedula')!="")){
-				
-	        	$data['user_nombre'] = $this->session->userdata('user_nombre');
-
-
-	        	$data['user_vidasxjuego']= $this->session->userdata('user_vidasxjuego');
-            	$data['user_vidasperdidas']= $this->session->userdata('user_vidasperdidas');
-
-	        	$data['participante'] = $this->db->get_where('participante', array('estado' => 1, 'id' => $this->session->userdata('user_id')))->row();
-
-				$arrJuegos = $this->db->get_where('juego', array('estado' => 1))->result_array() ;
-				$data['juegoNivel1'] = $arrJuegos[0];
-		        $data['preguntas'] = $this->db->get_where('pregunta', array('estado' => 1, 'idjuego' => $data['juegoNivel1']["id"]   ))->result_array();
-
-		        for ($i=0; $i < count($data['preguntas']) ; $i++) { 
-		        	$data['preguntas'][$i]["respuestas"] = $this->db->get_where('pregunta_opcion', array('estado' => 1, 'idpregunta'=>$data['preguntas'][$i]["id"] ))->result_array() ;
-		        }
-
-		        //print_r( $data['preguntas'] );
-
-	        	$data['title']= 'Nivel 1';
-				$this->load->view('jornadas/header',$data);
-				$this->load->view("jornadas/menu", $data);
-				$this->load->view("jornadas/nivel1", $data);
-				$this->load->view('jornadas/footer',$data);
-
-
-			}else{
-				$data['title']= 'Home';
-				$this->load->view('jornadas/header',$data);
-				$this->load->view("jornadas/registration_view", $data);
-				$this->load->view('jornadas/footer',$data);
-			}
+			$data = array(
+				'puntajemaximo' => $participante->puntajemaximo
+            );
+	        $this->db->update('participante', $data, array('id' => $this->session->userdata('user_id')));
 	    }
 
-	    ////////////////////////////////////////////////////////////////
-
-	    public function preguntasNivel1(){
-
-
-	    	$arrJuegos = $this->db->get_where('juego', array('estado' => 1))->result_array() ;
-			$data['juegoNivel1'] = $arrJuegos[0];
-	        $data['preguntas'] = $this->db->get_where('pregunta', array('estado' => 1, 'idjuego' => $data['juegoNivel1']["id"]   ))->result_array();
-	        for ($i=0; $i < count($data['preguntas']) ; $i++) { 
-	        	$data['preguntas'][$i]["respuestas"] = $this->db->get_where('pregunta_opcion', array('estado' => 1, 'idpregunta'=>$data['preguntas'][$i]["id"] ))->result_array() ;
-	        }
-
-
-	        //Resultados
-	        $listaRespuestas = array();
-            foreach ($data['preguntas'] as $preguntaRespuestas) {
-                foreach ($preguntaRespuestas["respuestas"] as $opcionRespuesta) {
-                    $idPreguntaOpcion = $opcionRespuesta["id"];
-
-                    $opcionRespuestaIndice = "om-" . $preguntaRespuestas["id"] . "-" . $opcionRespuesta["id"];
-                    $opcionRespuestaIndice2 = "vf-" . $preguntaRespuestas["id"];
-
-                    $elemento = $this->input->post($opcionRespuestaIndice);
-
-                    if( isset($elemento) && !empty($elemento) ){
-                        array_push($listaRespuestas, $elemento);
-                    }
-
-                    $elemento2 = $this->input->post($opcionRespuestaIndice2);
-                    if( isset($elemento2) && !empty($elemento2) ){
-                        array_push($listaRespuestas, $elemento2);
-                    }
-
-                }
-            }
-            $data['resultados'] = $listaRespuestas;
-            $data['user_nombre']= $this->session->userdata('user_nombre');
-
-			//$this->respuesta_model->add_respuestas();
-
-
-			if (  $this->respuesta_model->add_respuestas() ) {
-				# code...
-				$data['title']= 'Nivel 1 - Resumen';
-				$this->load->view('jornadas/header',$data);
-				$this->load->view("jornadas/menu", $data);
-				$this->load->view("jornadas/nivel1_resumen", $data);
-			}else{
-				$data['title']= 'Nivel 1';
-				$this->load->view('jornadas/header',$data);
-				$this->load->view("jornadas/menu", $data);
-				$this->load->view("jornadas/nivel1", $data);
-			}
-			$this->load->view('jornadas/footer',$data);
-
-			//print_r($this->session->userdata('user_id'));
-
-		}
 
 		public function reducirVidas(){
 			$participante = $this->db->get_where('participante', array('estado' => 1, 'id' => $this->session->userdata('user_id')))->row();
 			
 			$resultado = array();
-			if(($participante->vidasperdidas + 1) <=  $participante->vidasxjuego){
+			if(($participante->vidasperdidas + 1) <  $participante->vidasxjuego){
 				$participante->vidasperdidas = $participante->vidasperdidas + 1;
 				$data = array(
 					'vidasperdidas' => $participante->vidasperdidas,
@@ -246,6 +163,19 @@
 				$resultado = array(
 	            	'codigo' => 1,
 	                'Mensaje' => "Se han quitado vidas",
+	                'vidasperdidas' => ($participante->vidasperdidas) * 1,
+	                'vidasxjuego' => ($participante->vidasxjuego) * 1
+	            );
+			}elseif(($participante->vidasperdidas + 1) ==  $participante->vidasxjuego){
+				$participante->vidasperdidas = $participante->vidasperdidas + 1;
+				$data = array(
+					'vidasperdidas' => $participante->vidasperdidas,
+					'vidasxjuego' => $participante->vidasxjuego
+	            );
+	            $this->db->update('participante', $data, array('id' => $this->session->userdata('user_id')));
+				$resultado = array(
+	            	'codigo' => 3,
+	                'Mensaje' => "ultima vida",
 	                'vidasperdidas' => ($participante->vidasperdidas) * 1,
 	                'vidasxjuego' => ($participante->vidasxjuego) * 1
 	            );
@@ -282,5 +212,256 @@
             header('Content-Type: application/json');
         	echo json_encode( $resultado );
 		}
+
+
+		///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+		public function juegoUno(){
+
+	        if(($this->session->userdata('user_cedula')!="")){
+	    		
+
+	    		$idMateria = $this->uri->segment(3);
+
+	    		if(!$idMateria){
+	    			echo "<h4> Error: <a href='". base_url('index.php/user/login') . "'>Volver</a> </h4>";
+	    			return;
+	    		}
+
+				$data['materia'] = $this->db->get_where('materia', array('estado' => 1, 'id' => $idMateria))->row();
+	        	$data['user_nombre'] = $this->session->userdata('user_nombre');
+	        	$data['participante'] = $this->db->get_where('participante', array('estado' => 1, 'id' => $this->session->userdata('user_id')))->row();
+
+				$arrJuegos = $this->db->get_where('juego', array('estado' => 1, 'idmateria' => $idMateria))->result_array() ;
+				$data['juegoNivel1'] = $arrJuegos[0];  //fzzio cambiar al 1
+		        $data['preguntas'] = $this->db->get_where('pregunta', array('estado' => 1, 'idjuego' => $data['juegoNivel1']["id"]   ))->result_array();
+
+		        for ($i=0; $i < count($data['preguntas']) ; $i++) { 
+		        	$data['preguntas'][$i]["respuestas"] = $this->db->get_where('pregunta_opcion', array('estado' => 1, 'idpregunta'=>$data['preguntas'][$i]["id"] ))->result_array() ;
+		        }
+
+		        //print_r( $data['preguntas'] );
+
+	        	$data['title']= 'Nivel 1';
+				$this->load->view('jornadas/header',$data);
+				$this->load->view("jornadas/menu", $data);
+				$this->load->view("jornadas/nivel1", $data);
+				$this->load->view('jornadas/footer1',$data);
+
+
+			}else{
+				$data['title']= 'Home';
+				$this->load->view('jornadas/header',$data);
+				$this->load->view("jornadas/registration_view", $data);
+				$this->load->view('jornadas/footer',$data);
+			}
+	    }
+
+	    ///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+
+		///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+
+		public function juegoDos(){
+
+	        if(($this->session->userdata('user_cedula')!="")){
+	    		
+
+	    		$idMateria = $this->uri->segment(3);
+
+	    		if(!$idMateria){
+	    			
+	    			echo "<h4> Error: <a href='". base_url('index.php/user/login') . "'>Volver</a> </h4>";
+	    			return;
+	    		}
+
+				$data['materia'] = $this->db->get_where('materia', array('estado' => 1, 'id' => $idMateria))->row();
+
+	        	$data['user_nombre'] = $this->session->userdata('user_nombre');
+
+
+	        	$data['user_vidasxjuego']= $this->session->userdata('user_vidasxjuego');
+            	$data['user_vidasperdidas']= $this->session->userdata('user_vidasperdidas');
+
+	        	$data['participante'] = $this->db->get_where('participante', array('estado' => 1, 'id' => $this->session->userdata('user_id')))->row();
+
+				$arrJuegos = $this->db->get_where('juego', array('estado' => 1, 'idmateria' => $idMateria))->result_array() ;
+				$data['juegoNivel2'] = $arrJuegos[1];
+		        $data['preguntas'] = $this->db->get_where('pregunta', array('estado' => 1, 'idjuego' => $data['juegoNivel2']["id"]   ))->result_array();
+
+		        for ($i=0; $i < count($data['preguntas']) ; $i++) { 
+		        	$data['preguntas'][$i]["respuestas"] = $this->db->get_where('pregunta_opcion', array('estado' => 1, 'idpregunta'=>$data['preguntas'][$i]["id"] ))->result_array() ;
+		        }
+
+		        //print_r( $data['preguntas'] );
+
+	        	$data['title']= 'Nivel 2';
+				$this->load->view('jornadas/header',$data);
+				$this->load->view("jornadas/menu", $data);
+				$this->load->view("jornadas/nivel2", $data);
+				$this->load->view('jornadas/footer',$data);
+
+
+			}else{
+				$data['title']= 'Home';
+				$this->load->view('jornadas/header',$data);
+				$this->load->view("jornadas/registration_view", $data);
+				$this->load->view('jornadas/footer',$data);
+			}
+	    }
+
+	    ////////////////////////////////////////////////////////////////
+
+	    public function resumenNivel2(){
+
+	    	if(($this->session->userdata('user_cedula')!="")){
+		    	$idMateria = $this->uri->segment(3);
+
+	    		if(!$idMateria){
+	    			
+	    			echo "<h4> Error: <a href='". base_url('index.php/user/login') . "'>Volver</a> </h4>";
+	    			return;
+	    		}
+
+		    	// para el resumen
+
+		    	$arrJuegos = $this->db->get_where('juego', array('estado' => 1, 'idmateria' => $idMateria))->result_array() ;
+				$data['juegoNivel2'] = $arrJuegos[1]; // 1 =Nivel2
+		        $data['preguntas'] = $this->db->get_where('pregunta', array('estado' => 1, 'idjuego' => $data['juegoNivel1']["id"]   ))->result_array();
+		        $data['materia'] = $this->db->get_where('materia', array('estado' => 1, 'id' => $idMateria))->row();
+		        $totalCorrectasXjuego = 0;
+		        for ($i=0; $i < count($data['preguntas']) ; $i++) { 
+		        	$data['preguntas'][$i]["respuestas"] = $this->db->get_where('pregunta_opcion', array('estado' => 1, 'idpregunta'=>$data['preguntas'][$i]["id"], 'correcta' => 1 ))->result_array() ;
+		        	$totalCorrectasXjuego = $totalCorrectasXjuego + count($data['preguntas'][$i]["respuestas"]);
+		        }
+
+
+		        //Resultados
+		        $listaRespuestas = array();
+	            foreach ($data['preguntas'] as $preguntaRespuestas) {
+	                foreach ($preguntaRespuestas["respuestas"] as $opcionRespuesta) {
+	                    $idPreguntaOpcion = $opcionRespuesta["id"];
+
+	                    $opcionRespuestaIndice = "om-" . $preguntaRespuestas["id"] . "-" . $opcionRespuesta["id"];
+	                    $opcionRespuestaIndice2 = "vf-" . $preguntaRespuestas["id"];
+
+	                    $elemento = $this->input->post($opcionRespuestaIndice);
+
+	                    if( isset($elemento) && !empty($elemento) ){
+	                        array_push($listaRespuestas, $elemento);
+	                    }
+
+	                    $elemento2 = $this->input->post($opcionRespuestaIndice2);
+	                    if( isset($elemento2) && !empty($elemento2) ){
+	                        array_push($listaRespuestas, $elemento2);
+	                    }
+
+	                }
+	            }
+	            $data['puntosObtenidos'] = count($listaRespuestas);
+	            $data['puntosTotales'] = $totalCorrectasXjuego;            
+	            $data['user_nombre']= $this->session->userdata('user_nombre');
+
+				//$this->respuesta_model->add_respuestas();
+
+	            $this->sumarPuntos( $data['puntosObtenidos']  );
+
+
+
+
+	            //Se visualiza
+
+				if (  $this->respuesta_model->add_respuestas() ) {
+					# code...
+					$data['title']= 'Nivel 1 - Resumen';
+					$this->load->view('jornadas/header',$data);
+					$this->load->view("jornadas/menu", $data);
+					$this->load->view("jornadas/nivel1_resumen", $data);
+				}else{
+					$data['title']= 'Nivel 1';
+					$this->load->view('jornadas/header',$data);
+					$this->load->view("jornadas/menu", $data);
+					$this->load->view("jornadas/nivel1", $data);
+				}
+				$this->load->view('jornadas/footer',$data);
+
+				//print_r($this->session->userdata('user_id'));
+
+			}else{
+				$data['title']= 'Home';
+				$this->load->view('jornadas/header',$data);
+				$this->load->view("jornadas/registration_view", $data);
+				$this->load->view('jornadas/footer',$data);
+			}
+
+		}
+
+
+		///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+
+		///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////
+		
+
+		public function juegoTres(){
+
+	        if(($this->session->userdata('user_cedula')!="")){
+	    		
+
+	    		$idMateria = $this->uri->segment(3);
+
+	    		if(!$idMateria){
+	    			
+	    			echo "<h4> Error: <a href='". base_url('index.php/user/login') . "'>Volver</a> </h4>";
+	    			return;
+	    		}
+
+				$data['materia'] = $this->db->get_where('materia', array('estado' => 1, 'id' => $idMateria))->row();
+
+	        	$data['user_nombre'] = $this->session->userdata('user_nombre');
+
+
+	        	$data['user_vidasxjuego']= $this->session->userdata('user_vidasxjuego');
+            	$data['user_vidasperdidas']= $this->session->userdata('user_vidasperdidas');
+
+	        	$data['participante'] = $this->db->get_where('participante', array('estado' => 1, 'id' => $this->session->userdata('user_id')))->row();
+
+				$arrJuegos = $this->db->get_where('juego', array('estado' => 1, 'idmateria' => $idMateria))->result_array() ;
+				$data['juegoNivel3'] = $arrJuegos[1]; //Cambiar a 2 con las preguntas de los 3 //fzzio
+		        $data['preguntas'] = $this->db->get_where('pregunta', array('estado' => 1, 'idjuego' => $data['juegoNivel3']["id"]   ))->result_array();
+
+		        for ($i=0; $i < count($data['preguntas']) ; $i++) { 
+		        	$data['preguntas'][$i]["respuestas"] = $this->db->get_where('pregunta_opcion', array('estado' => 1, 'idpregunta'=>$data['preguntas'][$i]["id"] ))->result_array() ;
+		        }
+
+		        //print_r( $data['preguntas'] );
+
+	        	$data['title']= 'Nivel 3';
+				$this->load->view('jornadas/header',$data);
+				$this->load->view("jornadas/menu", $data);
+				$this->load->view("jornadas/nivel3", $data);
+				$this->load->view('jornadas/footer',$data);
+
+
+			}else{
+				$data['title']= 'Home';
+				$this->load->view('jornadas/header',$data);
+				$this->load->view("jornadas/registration_view", $data);
+				$this->load->view('jornadas/footer',$data);
+			}
+	    }
+
 	}
 ?>
