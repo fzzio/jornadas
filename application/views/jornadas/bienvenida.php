@@ -33,7 +33,7 @@
 								<select class="form-control" name="materia" id="combo-nivel">
 									<option value="juegoUno">Nivel 1</option>
 									<option value="juegoDos">Nivel 2</option>
-									<!-- <option value="juegoTre">Nivel 3</option> -->
+									<option value="juegoTres">Nivel 3</option>
 								</select>
 							</div>
 						</div>
