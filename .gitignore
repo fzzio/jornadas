@@ -1,3 +1,4 @@
+application/config/*
 */config/development
 */logs/log-*.php
 */logs/!index.html
@@ -6,4 +7,3 @@
 */cache/!.htaccess
 0bak/*
 otros/*
-application/config/database.php

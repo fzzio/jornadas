@@ -18,7 +18,12 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	define('ENVIRONMENT', 'development');
+	// Domain-based environment
+	if ($_SERVER['SERVER_NAME'] == 'local_server_name') {
+	    define('ENVIRONMENT', 'development');
+	} else {
+	    define('ENVIRONMENT', 'production');
+	}
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -39,6 +44,7 @@ if (defined('ENVIRONMENT'))
 		case 'testing':
 		case 'production':
 			error_reporting(0);
+			ini_set('display_errors', 0);
 		break;
 
 		default:
