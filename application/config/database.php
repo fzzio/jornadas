@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root'; //cajanegr_ujornad
-$db['default']['password'] = ''; //ujornad
-$db['default']['database'] = 'jornadas_db'; //cajanegr_jornadas
+$db['default']['username'] = 'cajanegr_ujornad'; //cajanegr_ujornad
+$db['default']['password'] = 'ujornad'; //ujornad
+$db['default']['database'] = 'cajanegr_jornadas'; //cajanegr_jornadas
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
