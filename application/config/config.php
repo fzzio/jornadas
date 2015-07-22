@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= ''; ////@fzzio
+$config['base_url']	= 'http://201.183.251.60/jornadas'; ////@fzzio
 //$config['base_url'] = 'http://localhost/proyectos/jornadas';
 
 /*
