@@ -161,7 +161,7 @@
                                                                     <div class="checkbox checkbox-jornada">
                                                                         <label class="txt-contenido espaciado-a">
                                                                             <?php $opcionNombre =  "om-" . $pregunta['id'] . "-" . $opcion['id'];?>
-                                                                            <input type="checkbox" name="<?php echo $opcionNombre; ?>" id="<?php echo $opcionNombre; ?>" value="<?php echo $opcion['id']; ?>"><?php echo utf8_encode($opcion['texto']); ?>
+                                                                            <input type="checkbox" name="<?php echo $opcionNombre; ?>" id="<?php echo $opcionNombre; ?>" value="<?php echo $opcion['id']; ?>"><?php echo ($opcion['texto']); ?>
                                                                         </label>
                                                                     </div>
                                                                 <?php endforeach ?>
