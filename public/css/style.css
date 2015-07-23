@@ -290,7 +290,8 @@ html, body{
 	/*font-family: 'Droid Sans', sans-serif;*/
 	font-family: 'Dosis', sans-serif;
 	color: #FFFFFF;
-	font-weight: 700;
+	font-weight: 400;
+  	font-size: 25px;
 	/*text-shadow: 2px 0 0 #925a10, -2px 0 0 #925a10, 0 2px 0 #925a10, 0 -2px 0 #925a10, 1px 1px #925a10, -1px -1px 0 #925a10, 1px -1px 0 #925a10, -1px 1px 0 #925a10;*/
 	text-transform: uppercase;
 }
