@@ -279,17 +279,19 @@ html, body{
 	animation: AnimationName 30s ease infinite;
 }
 .titular-encuesta{
-	/*font-family: 'Droid Sans', sans-serif;*/font-family: arial, sans-serif;
+	/*font-family: 'Droid Sans', sans-serif;*/
+	font-family: arial, sans-serif;
 	color: #FFFFFF;
 	font-weight: 700;
 	text-shadow: 2px 0 0 #de8010, -2px 0 0 #de8010, 0 2px 0 #de8010, 0 -2px 0 #de8010, 1px 1px #de8010, -1px -1px 0 #de8010, 1px -1px 0 #de8010, -1px 1px 0 #de8010;
 	text-transform: uppercase;
 }
 .titular-encuesta-pregunta{
-	/*font-family: 'Droid Sans', sans-serif;*/font-family: arial, sans-serif;
+	/*font-family: 'Droid Sans', sans-serif;*/
+	font-family: 'Dosis', sans-serif;
 	color: #FFFFFF;
 	font-weight: 700;
-	text-shadow: 2px 0 0 #925a10, -2px 0 0 #925a10, 0 2px 0 #925a10, 0 -2px 0 #925a10, 1px 1px #925a10, -1px -1px 0 #925a10, 1px -1px 0 #925a10, -1px 1px 0 #925a10;
+	/*text-shadow: 2px 0 0 #925a10, -2px 0 0 #925a10, 0 2px 0 #925a10, 0 -2px 0 #925a10, 1px 1px #925a10, -1px -1px 0 #925a10, 1px -1px 0 #925a10, -1px 1px 0 #925a10;*/
 	text-transform: uppercase;
 }
 .titular-encuesta-pregunta-r{

@@ -17,6 +17,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/fonts/fuentes.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/css/hover-min.css'); ?>">        
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Dosis:400,500,700">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/css/style.css'); ?>">
         <link rel="icon" type="image/png" href="<?php echo base_url('public/img/favicon.png'); ?>">
 
