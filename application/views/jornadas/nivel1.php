@@ -98,10 +98,10 @@
                         <div class="container-fluid text-center fondo-pregunta2" id="ruletaContenedorPreguntas">
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
-                                    <h1 class="titular-encuesta-pregunta" id="ruletaPreguntaID">
+                                    <h1 class="titular-encuesta-pregunta-2" id="ruletaPreguntaID">
                                         Atención!
                                     </h1>
-                                    <h4 class="titular-encuesta-pregunta" id="ruletaPreguntaTitular">
+                                    <h4 class="titular-encuesta-pregunta-2" id="ruletaPreguntaTitular">
                                         Click a la ruleta para empezar
                                     </h4>
                                 </div>
