@@ -149,7 +149,7 @@
                                                                 --- # <?php echo $numP; $numP = $numP + 1; ?> ---
                                                             </h1>
                                                             <h4 class="titular-encuesta-pregunta">
-                                                                <?php echo utf8_encode($pregunta['texto']); ?>
+                                                                <?php echo ($pregunta['texto']); ?>
                                                             </h4>
                                                         </div>
                                                     </div>
